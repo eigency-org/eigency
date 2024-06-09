@@ -1,4 +1,5 @@
 cimport numpy as np
+import numpy as np
 # It's necessary to call "import_array" if you use any part of the
 # numpy PyArray_* API. From Cython 3, accessing attributes like
 # ".shape" on a typed Numpy array use this API. Therefore we recommend
@@ -82,11 +83,14 @@ cdef api np.ndarray[unsigned char, ndim=2] ndarray_uchar_F(unsigned char *data, 
 cdef api np.ndarray[unsigned char, ndim=2] ndarray_copy_uchar_C(const unsigned char *data, long rows, long cols, long outer_stride, long inner_stride)
 cdef api np.ndarray[unsigned char, ndim=2] ndarray_copy_uchar_F(const unsigned char *data, long rows, long cols, long outer_stride, long inner_stride)
 
+
+"""
 cdef api np.ndarray[np.npy_clongdouble, ndim=2] ndarray_complex_long_double()
 cdef api np.ndarray[np.npy_clongdouble, ndim=2] ndarray_complex_long_double_C(np.npy_clongdouble *data, long rows, long cols, long outer_stride, long inner_stride)
 cdef api np.ndarray[np.npy_clongdouble, ndim=2] ndarray_complex_long_double_F(np.npy_clongdouble *data, long rows, long cols, long outer_stride, long inner_stride)
 cdef api np.ndarray[np.npy_clongdouble, ndim=2] ndarray_copy_complex_long_double_C(const np.npy_clongdouble *data, long rows, long cols, long outer_stride, long inner_stride)
 cdef api np.ndarray[np.npy_clongdouble, ndim=2] ndarray_copy_complex_long_double_F(const np.npy_clongdouble *data, long rows, long cols, long outer_stride, long inner_stride)
+"""
 
 cdef api np.ndarray[np.complex128_t, ndim=2] ndarray_complex_double()
 cdef api np.ndarray[np.complex128_t, ndim=2] ndarray_complex_double_C(np.complex128_t *data, long rows, long cols, long outer_stride, long inner_stride)
