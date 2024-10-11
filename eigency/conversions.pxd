@@ -1,5 +1,14 @@
 cimport numpy as np
+# It's necessary to call "import_array" if you use any part of the
+# numpy PyArray_* API. From Cython 3, accessing attributes like
+# ".shape" on a typed Numpy array use this API. Therefore we recommend
+# always calling "import_array" whenever you "cimport numpy"
+np.import_array()
 
+# read https://numpy.org/devdocs/numpy_2_0_migration_guide.html#the-pyarray-descr-struct-has-been-changed
+# for more information about this lien
+cdef extern from "npy2_compat.h":
+    pass
 
 cdef api np.ndarray[long double, ndim=2] ndarray_long_double()
 cdef api np.ndarray[long double, ndim=2] ndarray_long_double_C(long double *data, long rows, long cols, long outer_stride, long inner_stride)
