@@ -25,6 +25,12 @@ cdef api np.ndarray[long, ndim=2] ndarray_long_F(long *data, long rows, long col
 cdef api np.ndarray[long, ndim=2] ndarray_copy_long_C(const long *data, long rows, long cols, long outer_stride, long inner_stride)
 cdef api np.ndarray[long, ndim=2] ndarray_copy_long_F(const long *data, long rows, long cols, long outer_stride, long inner_stride)
 
+cdef api np.ndarray[long long, ndim=2] ndarray_long_long()
+cdef api np.ndarray[long long, ndim=2] ndarray_long_long_C(long long*data, long rows, long cols, long outer_stride, long inner_stride)
+cdef api np.ndarray[long long, ndim=2] ndarray_long_long_F(long long *data, long rows, long cols, long outer_stride, long inner_stride)
+cdef api np.ndarray[long long, ndim=2] ndarray_copy_long_long_C(const long long *data, long rows, long cols, long outer_stride, long inner_stride)
+cdef api np.ndarray[long long, ndim=2] ndarray_copy_long_long_F(const long long *data, long rows, long cols, long outer_stride, long inner_stride)
+
 cdef api np.ndarray[unsigned long, ndim=2] ndarray_ulong()
 cdef api np.ndarray[unsigned long, ndim=2] ndarray_ulong_C(unsigned long *data, long rows, long cols, long outer_stride, long inner_stride)
 cdef api np.ndarray[unsigned long, ndim=2] ndarray_ulong_F(unsigned long *data, long rows, long cols, long outer_stride, long inner_stride)
