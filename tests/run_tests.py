@@ -159,25 +159,25 @@ class TestEigency(unittest.TestCase):
         mat_out = eigency_tests.function_type_float32(mat_in)
         assert_array_equal(mat_in, mat_out)
 
-    def test_function_type_int(self):
+    def test_function_type_int32(self):
         # C++ long - Note that this is the standard Python integer
-        mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order="F")
+        mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order="F",dtype=np.int32)
         # # equivalent to:
         # mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order='F', dtype=np.int_)
         mat_out = eigency_tests.function_type_long(mat_in)
         assert_array_equal(mat_in, mat_out)
 
-    def test_function_type_long(self):
+    def test_function_type_long_long(self):
         # C++ long - Note that this is the standard Python integer
-        mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order="F", dtype=int)
+        mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order="F", dtype=np.int64)
         # # equivalent to:
         # mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order='F', dtype=np.int_)
-        mat_out = eigency_tests.function_type_long(mat_in)
+        mat_out = eigency_tests.function_type_long_long(mat_in)
         assert_array_equal(mat_in, mat_out)
 
     def test_function_type_ulong(self):
         # C++ ulong
-        mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order="F", dtype=np.uint)
+        mat_in = np.array([[1, 2, 3, 4], [5, 6, 7, 8]], order="F", dtype=np.uint32)
         mat_out = eigency_tests.function_type_ulong(mat_in)
         assert_array_equal(mat_in, mat_out)
 
