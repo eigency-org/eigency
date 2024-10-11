@@ -6,6 +6,10 @@ from eigency.core cimport *
 # cimport eigency.conversions
 # from eigency_tests.eigency cimport *
 
+# read https://numpy.org/devdocs/numpy_2_0_migration_guide.html#the-pyarray-descr-struct-has-been-changed
+# for more information about this lien
+cdef extern from "npy2_compat.h":
+    pass
 
 # import eigency
 # include "../eigency.pyx"
@@ -47,6 +51,7 @@ cdef extern from "eigency_tests/eigency_tests_cpp.h":
      cdef PlainObjectBase _function_type_double "function_type_double" (Map[ArrayXXd] &)
      cdef PlainObjectBase _function_type_float "function_type_float" (Map[ArrayXXf] &)
      cdef PlainObjectBase _function_type_long "function_type_long" (FlattenedMap[Array, long, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_long_long "function_type_long_long" (FlattenedMap[Array, longlong, Dynamic, Dynamic] &)
      cdef PlainObjectBase _function_type_ulong "function_type_ulong" (FlattenedMap[Array, unsigned long, Dynamic, Dynamic] &)
      cdef PlainObjectBase _function_type_int "function_type_int" (Map[ArrayXXi] &)
      cdef PlainObjectBase _function_type_uint "function_type_uint" (FlattenedMap[Array, unsigned int, Dynamic, Dynamic] &)
@@ -151,6 +156,10 @@ def function_type_float32(np.ndarray[np.float32_t, ndim=2] array):
 # Functions with different matrix types: long
 def function_type_long(np.ndarray[long, ndim=2] array):
     return ndarray(_function_type_long(FlattenedMap[Array, long, Dynamic, Dynamic](array)))
+
+# Functions with different matrix types: long
+def function_type_long_long(np.ndarray[long long, ndim=2] array):
+    return ndarray(_function_type_long_long(FlattenedMap[Array, longlong, Dynamic, Dynamic](array)))
 
 # Functions with different matrix types: ulong
 def function_type_ulong(np.ndarray[unsigned long, ndim=2] array):

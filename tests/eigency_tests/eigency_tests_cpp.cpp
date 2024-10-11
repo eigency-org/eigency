@@ -88,6 +88,12 @@ Eigen::Array<long, Eigen::Dynamic, Eigen::Dynamic> function_type_long(Eigen::Map
     return output;
 }
 
+Eigen::Array<long long, Eigen::Dynamic, Eigen::Dynamic> function_type_long_long(Eigen::Map<Eigen::Array<long long, Eigen::Dynamic, Eigen::Dynamic> > &mat) {
+    Eigen::Array<long long, Eigen::Dynamic, Eigen::Dynamic> output = mat;
+    return output;
+}
+
+
 Eigen::Array<unsigned long, Eigen::Dynamic, Eigen::Dynamic> function_type_ulong(Eigen::Map<Eigen::Array<unsigned long, Eigen::Dynamic, Eigen::Dynamic> > &mat) {
     Eigen::Array<unsigned long, Eigen::Dynamic, Eigen::Dynamic> output = mat;
     return output;

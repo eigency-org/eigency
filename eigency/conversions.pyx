@@ -148,6 +148,42 @@ cdef np.ndarray[long, ndim=2] ndarray_copy_long_F(const long *data, long rows, l
     return np.copy(as_strided(np.asarray(mem_view, dtype=dtype, order="F"), strides=[row_stride*itemsize, col_stride*itemsize]))
 
 #
+# long long
+#
+
+@cython.boundscheck(False)
+cdef np.ndarray[long long, ndim=2] ndarray_long_long():
+    return np.empty((0,0), dtype=np.int64)
+
+@cython.boundscheck(False)
+cdef np.ndarray[long long, ndim=2] ndarray_long_long_C(long long *data, long rows, long cols, long row_stride, long col_stride):
+    cdef long long[:,:] mem_view = <long long[:rows,:cols]>data
+    dtype = np.dtype(np.int64)
+    cdef np.npy_intp itemsize = dtype.itemsize
+    return as_strided(np.asarray(mem_view, dtype=dtype, order="C"), strides=[row_stride*itemsize, col_stride*itemsize])
+
+@cython.boundscheck(False)
+cdef np.ndarray[long long, ndim=2] ndarray_long_long_F(long long *data, long rows, long cols, long row_stride, long col_stride):
+    cdef long long[::1,:] mem_view = <long long[:rows:1,:cols]>data
+    dtype = np.dtype(np.int64)
+    cdef np.npy_intp itemsize = dtype.itemsize
+    return as_strided(np.asarray(mem_view, dtype=dtype, order="F"), strides=[row_stride*itemsize, col_stride*itemsize])
+
+@cython.boundscheck(False)
+cdef np.ndarray[long long, ndim=2] ndarray_copy_long_long_C(const long long *data, long rows, long cols, long row_stride, long col_stride):
+    cdef long long[:,:] mem_view = <long long[:rows,:cols]>data
+    dtype = np.dtype(np.int64)
+    cdef np.npy_intp itemsize = dtype.itemsize
+    return np.copy(as_strided(np.asarray(mem_view, dtype=dtype, order="C"), strides=[row_stride*itemsize, col_stride*itemsize]))
+
+@cython.boundscheck(False)
+cdef np.ndarray[long long, ndim=2] ndarray_copy_long_long_F(const long long *data, long rows, long cols, long row_stride, long col_stride):
+    cdef long long[::1,:] mem_view = <long long[:rows:1,:cols]>data
+    dtype = np.dtype(np.int64)
+    cdef np.npy_intp itemsize = dtype.itemsize
+    return np.copy(as_strided(np.asarray(mem_view, dtype=dtype, order="F"), strides=[row_stride*itemsize, col_stride*itemsize]))
+
+#
 # unsigned long
 #
 
