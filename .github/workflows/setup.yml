@@ -23,6 +23,12 @@ jobs:
         # os: [ ubuntu-20.04, ubuntu-22.04, windows-latest, macos-latest ]
         os: [ ubuntu-20.04, ubuntu-22.04, windows-latest ]
         python: [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
+        numpy: ["1", "2"]
+        exclude:
+          - python: "3.8"
+            numpy: "2"
+          - python: "3.9"
+            numpy: "2"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install MSBuild
@@ -37,10 +43,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
-      - name: Install build dependencies
+      - name: Install build dependencies numpy ${{ matrix.numpy }}
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --upgrade setuptools>=42 setuptools_scm numpy Cython
+          python -m pip install --upgrade setuptools>=42 setuptools_scm numpy==${{ matrix.numpy }}.* Cython
       - name: Build and install eigency
         run: |
           python setup.py build
