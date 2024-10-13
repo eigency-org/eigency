@@ -20,6 +20,7 @@ setup(
         compiler_directives=dict(
             language_level="3",
         ),
+        force=True,
     ),
     packages=["eigency_tests"],
 )

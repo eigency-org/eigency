@@ -1,11 +1,14 @@
 # distutils: language = c++
 # distutils: sources = eigency_tests/eigency_tests_cpp.cpp
-from libc.stdint cimport int8_t, int16_t, int32_t, int64_t
-from libc.stdint cimport uint8_t, uint16_t, uint32_t, uint64_t
+from libc.stdint cimport (int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t,
+                          uint32_t, uint64_t)
 
 from eigency.core cimport *
+
 import numpy as np
+
 cimport numpy as np
+
 # It's necessary to call "import_array" if you use any part of the
 # numpy PyArray_* API. From Cython 3, accessing attributes like
 # ".shape" on a typed Numpy array use this API. Therefore we recommend

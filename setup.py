@@ -16,6 +16,7 @@ if "EIGEN_INC" in os.environ:
 else:
     useSystemEigen = False
     import eigency  # noqa: E402
+
     __eigen_dir__ = eigency.get_eigency_eigen_dir()
     __eigen_lib_dir__ = join(basename(__eigen_dir__), "Eigen")
     include_dirs.append(__eigen_dir__)
@@ -44,12 +45,14 @@ extensions = [
         ["eigency/conversions" + ext],
         include_dirs=include_dirs,
         language="c++",
+        # define_macros = [('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')],
     ),
     Extension(
         "eigency.core",
         ["eigency/core" + ext],
         include_dirs=include_dirs,
         language="c++",
+        # define_macros = [('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')],
     ),
 ]
 
@@ -59,6 +62,7 @@ if USE_CYTHON:
         compiler_directives=dict(
             language_level="3",
         ),
+        force=True,
     )
 
 long_description = open("README.md").read()
