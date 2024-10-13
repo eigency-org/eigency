@@ -40,14 +40,18 @@ CustomStrideMap &function_filter3(CustomStrideMap &);
 
 Eigen::ArrayXXd function_type_double(Eigen::Map<Eigen::ArrayXXd> &array);
 Eigen::ArrayXXf function_type_float(Eigen::Map<Eigen::ArrayXXf> &array);
-Eigen::Array<long, Eigen::Dynamic, Eigen::Dynamic> function_type_long(Eigen::Map<Eigen::Array<long, Eigen::Dynamic, Eigen::Dynamic> > &mat);
-Eigen::Array<unsigned long, Eigen::Dynamic, Eigen::Dynamic> function_type_ulong(Eigen::Map<Eigen::Array<unsigned long, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+
+Eigen::Array<int8_t,  Eigen::Dynamic, Eigen::Dynamic> function_type_int8(Eigen::Map<Eigen::Array<int8_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+Eigen::Array<int16_t, Eigen::Dynamic, Eigen::Dynamic> function_type_int16(Eigen::Map<Eigen::Array<int16_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+Eigen::Array<int32_t, Eigen::Dynamic, Eigen::Dynamic> function_type_int32(Eigen::Map<Eigen::Array<int32_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+Eigen::Array<int64_t, Eigen::Dynamic, Eigen::Dynamic> function_type_int64(Eigen::Map<Eigen::Array<int64_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+
+Eigen::Array<uint8_t,  Eigen::Dynamic, Eigen::Dynamic> function_type_uint8(Eigen::Map<Eigen::Array<uint8_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+Eigen::Array<uint16_t, Eigen::Dynamic, Eigen::Dynamic> function_type_uint16(Eigen::Map<Eigen::Array<uint16_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+Eigen::Array<uint32_t, Eigen::Dynamic, Eigen::Dynamic> function_type_uint32(Eigen::Map<Eigen::Array<uint32_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+Eigen::Array<uint64_t, Eigen::Dynamic, Eigen::Dynamic> function_type_uint64(Eigen::Map<Eigen::Array<uint64_t, Eigen::Dynamic, Eigen::Dynamic> > &mat);
+
 Eigen::ArrayXXi function_type_int(Eigen::Map<Eigen::ArrayXXi> &array);
-Eigen::Array<unsigned int, Eigen::Dynamic, Eigen::Dynamic> function_type_uint(Eigen::Map<Eigen::Array<unsigned int, Eigen::Dynamic, Eigen::Dynamic> > &array);
-Eigen::Array<short, Eigen::Dynamic, Eigen::Dynamic> function_type_short(Eigen::Map<Eigen::Array<short, Eigen::Dynamic, Eigen::Dynamic> > &mat);
-Eigen::Array<unsigned short, Eigen::Dynamic, Eigen::Dynamic> function_type_ushort(Eigen::Map<Eigen::Array<unsigned short, Eigen::Dynamic, Eigen::Dynamic> > &mat);
-Eigen::Array<signed char, Eigen::Dynamic, Eigen::Dynamic> function_type_signed_char(Eigen::Map<Eigen::Array<signed char, Eigen::Dynamic, Eigen::Dynamic> > &mat);
-Eigen::Array<unsigned char, Eigen::Dynamic, Eigen::Dynamic> function_type_unsigned_char(Eigen::Map<Eigen::Array<unsigned char, Eigen::Dynamic, Eigen::Dynamic> > &mat);
 Eigen::ArrayXXcd function_type_complex_double(Eigen::Map<Eigen::ArrayXXcd> &array);
 Eigen::ArrayXXcf function_type_complex_float(Eigen::Map<Eigen::ArrayXXcf> &array);
 

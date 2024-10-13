@@ -1,11 +1,27 @@
 # distutils: language = c++
 # distutils: sources = eigency_tests/eigency_tests_cpp.cpp
+from libc.stdint cimport (int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t,
+                          uint32_t, uint64_t)
 
 from eigency.core cimport *
+
+import numpy as np
+
+cimport numpy as np
+
+# It's necessary to call "import_array" if you use any part of the
+# numpy PyArray_* API. From Cython 3, accessing attributes like
+# ".shape" on a typed Numpy array use this API. Therefore we recommend
+# always calling "import_array" whenever you "cimport numpy"
+np.import_array()
 
 # cimport eigency.conversions
 # from eigency_tests.eigency cimport *
 
+# read https://numpy.org/devdocs/numpy_2_0_migration_guide.html#the-pyarray-descr-struct-has-been-changed
+# for more information about this lien
+cdef extern from "npy2_compat.h":
+    pass
 
 # import eigency
 # include "../eigency.pyx"
@@ -46,14 +62,17 @@ cdef extern from "eigency_tests/eigency_tests_cpp.h":
 
      cdef PlainObjectBase _function_type_double "function_type_double" (Map[ArrayXXd] &)
      cdef PlainObjectBase _function_type_float "function_type_float" (Map[ArrayXXf] &)
-     cdef PlainObjectBase _function_type_long "function_type_long" (FlattenedMap[Array, long, Dynamic, Dynamic] &)
-     cdef PlainObjectBase _function_type_ulong "function_type_ulong" (FlattenedMap[Array, unsigned long, Dynamic, Dynamic] &)
-     cdef PlainObjectBase _function_type_int "function_type_int" (Map[ArrayXXi] &)
-     cdef PlainObjectBase _function_type_uint "function_type_uint" (FlattenedMap[Array, unsigned int, Dynamic, Dynamic] &)
-     cdef PlainObjectBase _function_type_short "function_type_short" (FlattenedMap[Array, short, Dynamic, Dynamic] &)
-     cdef PlainObjectBase _function_type_ushort "function_type_ushort" (FlattenedMap[Array, ushort, Dynamic, Dynamic] &)
-     cdef PlainObjectBase _function_type_signed_char "function_type_signed_char" (FlattenedMap[Array, signed char, Dynamic, Dynamic] &)
-     cdef PlainObjectBase _function_type_unsigned_char "function_type_unsigned_char" (FlattenedMap[Array, unsigned char, Dynamic, Dynamic] &)
+
+     cdef PlainObjectBase _function_type_int8 "function_type_int8" (FlattenedMap[Array, int8_t, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_int16 "function_type_int16" (FlattenedMap[Array, int16_t, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_int32 "function_type_int32" (FlattenedMap[Array, int32_t, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_int64 "function_type_int64" (FlattenedMap[Array, int64_t, Dynamic, Dynamic] &)
+
+     cdef PlainObjectBase _function_type_uint8 "function_type_uint8" (FlattenedMap[Array, uint8_t, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_uint16 "function_type_uint16" (FlattenedMap[Array, uint16_t, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_uint32 "function_type_uint32" (FlattenedMap[Array, uint32_t, Dynamic, Dynamic] &)
+     cdef PlainObjectBase _function_type_uint64 "function_type_uint64" (FlattenedMap[Array, uint64_t, Dynamic, Dynamic] &)
+
      cdef PlainObjectBase _function_type_complex_double "function_type_complex_double" (Map[ArrayXXcd] &)
      cdef PlainObjectBase _function_type_complex_float "function_type_complex_float" (Map[ArrayXXcf] &)
 
@@ -147,38 +166,31 @@ def function_type_float64(np.ndarray[np.float64_t, ndim=2] array):
 # Functions with different matrix types: float32
 def function_type_float32(np.ndarray[np.float32_t, ndim=2] array):
     return ndarray(_function_type_float(Map[ArrayXXf](array)))
+# Functions with different matrix types: long
+def function_type_int32(np.ndarray[int32_t , ndim=2] array):
+    return ndarray(_function_type_int32(FlattenedMap[Array, int32_t , Dynamic, Dynamic](array)))
 
 # Functions with different matrix types: long
-def function_type_long(np.ndarray[long, ndim=2] array):
-    return ndarray(_function_type_long(FlattenedMap[Array, long, Dynamic, Dynamic](array)))
+def function_type_int64(np.ndarray[int64_t, ndim=2] array):
+    return ndarray(_function_type_int64(FlattenedMap[Array, int64_t, Dynamic, Dynamic](array)))
 
 # Functions with different matrix types: ulong
-def function_type_ulong(np.ndarray[unsigned long, ndim=2] array):
-    return ndarray(_function_type_ulong(FlattenedMap[Array, ulong, Dynamic, Dynamic](array)))
-
-# Functions with different matrix types: int
-def function_type_intc(np.ndarray[np.int32_t, ndim=2] array):
-    return ndarray(_function_type_int(Map[ArrayXXi](array)))
-
-# Functions with different matrix types: uint
-def function_type_uintc(np.ndarray[np.uint32_t, ndim=2] array):
-    return ndarray(_function_type_uint(FlattenedMap[Array, uint, Dynamic, Dynamic](array)))
+def function_type_uint32(np.ndarray[np.uint32_t, ndim=2] array):
+    return ndarray(_function_type_uint32(FlattenedMap[Array, np.uint32_t, Dynamic, Dynamic](array)))
 
 # Functions with different matrix types: short
-def function_type_short(np.ndarray[np.int16_t, ndim=2] array):
-    return ndarray(_function_type_short(FlattenedMap[Array, short, Dynamic, Dynamic](array)))
-
+def function_type_int16(np.ndarray[np.int16_t, ndim=2] array):
+    return ndarray(_function_type_int16(FlattenedMap[Array, int16_t, Dynamic, Dynamic](array)))
 # Functions with different matrix types: ushort
-def function_type_ushort(np.ndarray[np.uint16_t, ndim=2] array):
-    return ndarray(_function_type_ushort(FlattenedMap[Array, ushort, Dynamic, Dynamic](array)))
-
+def function_type_uint16(np.ndarray[np.uint16_t, ndim=2] array):
+    return ndarray(_function_type_uint16(FlattenedMap[Array, uint16_t, Dynamic, Dynamic](array)))
 # Functions with different matrix types: signed char
 def function_type_int8(np.ndarray[np.int8_t, ndim=2] array):
-    return ndarray(_function_type_signed_char(FlattenedMap[Array, schar, Dynamic, Dynamic](array)))
+    return ndarray(_function_type_int8(FlattenedMap[Array, int8_t, Dynamic, Dynamic](array)))
 
 # Functions with different matrix types: unsigned char
 def function_type_uint8(np.ndarray[np.uint8_t, ndim=2] array):
-    return ndarray(_function_type_unsigned_char(FlattenedMap[Array, uchar, Dynamic, Dynamic](array)))
+    return ndarray(_function_type_uint8(FlattenedMap[Array, uint8_t, Dynamic, Dynamic](array)))
 
 # Functions with different matrix types: complex128
 def function_type_complex128(np.ndarray[np.complex128_t, ndim=2] array):
