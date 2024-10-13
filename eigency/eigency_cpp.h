@@ -57,39 +57,44 @@ inline PyArrayObject* _ndarray_copy< TYPE >(const TYPE *data, long rows, long co
     }                                                                                                                                           \
 }
 
-_NDAV(long double, ndarray_long_double, ndarray_long_double_C, ndarray_long_double_F)
-_NDAC(long double, ndarray_long_double, ndarray_copy_long_double_C, ndarray_copy_long_double_F)
-_NDAV(double, ndarray_double, ndarray_double_C, ndarray_double_F)
-_NDAC(double, ndarray_double, ndarray_copy_double_C, ndarray_copy_double_F)
+// float point types
 _NDAV(float, ndarray_float, ndarray_float_C, ndarray_float_F)
 _NDAC(float, ndarray_float, ndarray_copy_float_C, ndarray_copy_float_F)
-_NDAV(long, ndarray_long, ndarray_long_C, ndarray_long_F)
-_NDAC(long, ndarray_long, ndarray_copy_long_C, ndarray_copy_long_F)
-_NDAV(long long, ndarray_long_long, ndarray_long_long_C, ndarray_long_long_F)
-_NDAC(long long, ndarray_long_long, ndarray_copy_long_long_C, ndarray_copy_long_long_F)
-_NDAV(unsigned long, ndarray_ulong, ndarray_ulong_C, ndarray_ulong_F)
-_NDAC(unsigned long, ndarray_ulong, ndarray_copy_ulong_C, ndarray_copy_ulong_F)
-_NDAV(int, ndarray_int, ndarray_int_C, ndarray_int_F)
-_NDAC(int, ndarray_int, ndarray_copy_int_C, ndarray_copy_int_F)
-_NDAV(unsigned int, ndarray_uint, ndarray_uint_C, ndarray_uint_F)
-_NDAC(unsigned int, ndarray_uint, ndarray_copy_uint_C, ndarray_copy_uint_F)
-_NDAV(short, ndarray_short, ndarray_short_C, ndarray_short_F)
-_NDAC(short, ndarray_short, ndarray_copy_short_C, ndarray_copy_short_F)
-_NDAV(unsigned short, ndarray_ushort, ndarray_ushort_C, ndarray_ushort_F)
-_NDAC(unsigned short, ndarray_ushort, ndarray_copy_ushort_C, ndarray_copy_ushort_F)
-_NDAV(signed char, ndarray_schar, ndarray_schar_C, ndarray_schar_F)
-_NDAC(signed char, ndarray_schar, ndarray_copy_schar_C, ndarray_copy_schar_F)
-_NDAV(unsigned char, ndarray_uchar, ndarray_uchar_C, ndarray_uchar_F)
-_NDAC(unsigned char, ndarray_uchar, ndarray_copy_uchar_C, ndarray_copy_uchar_F)
+_NDAV(double, ndarray_double, ndarray_double_C, ndarray_double_F)
+_NDAC(double, ndarray_double, ndarray_copy_double_C, ndarray_copy_double_F)
+_NDAV(long double, ndarray_long_double, ndarray_long_double_C, ndarray_long_double_F)
+_NDAC(long double, ndarray_long_double, ndarray_copy_long_double_C, ndarray_copy_long_double_F)
+
+// unsigned
+_NDAV(uint8_t, ndarray_uint8, ndarray_uint8_C, ndarray_uint8_F)
+_NDAC(uint8_t, ndarray_uint8, ndarray_copy_uint8_C, ndarray_copy_uint8_F)
+_NDAV(uint16_t, ndarray_uint16, ndarray_uint16_C, ndarray_uint16_F)
+_NDAC(uint16_t, ndarray_uint16, ndarray_copy_uint16_C, ndarray_copy_uint16_F)
+_NDAV(uint32_t, ndarray_uint32, ndarray_uint32_C, ndarray_uint32_F)
+_NDAC(uint32_t, ndarray_uint32, ndarray_copy_uint32_C, ndarray_copy_uint32_F)
+_NDAV(uint64_t, ndarray_uint64, ndarray_uint64_C, ndarray_uint64_F)
+_NDAC(uint64_t, ndarray_uint64, ndarray_copy_uint64_C, ndarray_copy_uint64_F)
+
+// signed
+_NDAV(int8_t, ndarray_int8, ndarray_int8_C, ndarray_int8_F)
+_NDAC(int8_t, ndarray_int8, ndarray_copy_int8_C, ndarray_copy_int8_F)
+_NDAV(int16_t, ndarray_int16, ndarray_int16_C, ndarray_int16_F)
+_NDAC(int16_t, ndarray_int16, ndarray_copy_int16_C, ndarray_copy_int16_F)
+_NDAV(int32_t, ndarray_int32, ndarray_int32_C, ndarray_int32_F)
+_NDAC(int32_t, ndarray_int32, ndarray_copy_int32_C, ndarray_copy_int32_F)
+_NDAV(int64_t, ndarray_int64, ndarray_int64_C, ndarray_int64_F)
+_NDAC(int64_t, ndarray_int64, ndarray_copy_int64_C, ndarray_copy_int64_F)
+
+// complex
+_NDAV(std::complex<float>, ndarray_complex_float, ndarray_complex_float_C, ndarray_complex_float_F)
+_NDAC(std::complex<float>, ndarray_complex_float, ndarray_copy_complex_float_C, ndarray_copy_complex_float_F)
+_NDAV(std::complex<double>, ndarray_complex_double, ndarray_complex_double_C, ndarray_complex_double_F)
+_NDAC(std::complex<double>, ndarray_complex_double, ndarray_copy_complex_double_C, ndarray_copy_complex_double_F)
+
 /*
 _NDAV(npy_clongdouble, ndarray_complex_long_double, ndarray_complex_long_double_C, ndarray_complex_long_double_F)
 _NDAC(npy_clongdouble, ndarray_complex_long_double, ndarray_copy_complex_long_double_C, ndarray_copy_complex_long_double_F)
 */
-_NDAV(std::complex<double>, ndarray_complex_double, ndarray_complex_double_C, ndarray_complex_double_F)
-_NDAC(std::complex<double>, ndarray_complex_double, ndarray_copy_complex_double_C, ndarray_copy_complex_double_F)
-_NDAV(std::complex<float>, ndarray_complex_float, ndarray_complex_float_C, ndarray_complex_float_F)
-_NDAC(std::complex<float>, ndarray_complex_float, ndarray_copy_complex_float_C, ndarray_copy_complex_float_F)
-
 #undef _NDAV
 #undef _NDAC
 
