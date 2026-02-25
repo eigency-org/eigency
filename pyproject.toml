@@ -16,7 +16,7 @@ description = "Cython interface between the numpy arrays and the Matrix/Array cl
 readme  = "README.md"
 
 requires-python = ">=3.9"
-license = "LicenseRef-Custom-License"
+license = "LicenseRef-Wouter-Boomsma-1.0"
 license-files = ["LICENSE"]
 
 dependencies = [

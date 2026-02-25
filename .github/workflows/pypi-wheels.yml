@@ -20,7 +20,7 @@ on:
 
 permissions:
   contents: read
-
+  id-token: write
 
 jobs:
   build_wheels:
@@ -115,17 +115,6 @@ jobs:
           python -m pip install --upgrade twine
 
       - name: Upload to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TEST_PYPI_TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          PYPI_TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          ls -la artifacts || true
-
-          if [ "${{ github.event.inputs.PyPiDeployTarget }}" == "pypi.org" ]; then
-            echo "Deploy to testpypi "
-            python -m twine upload  artifacts/* -u "$TWINE_USERNAME" -p "$TEST_PYPI_TWINE_PASSWORD" --non-interactive --verbose
-          else
-            python -m twine upload --repository testpypi artifacts/* -u "$TWINE_USERNAME" -p "$PYPI_TWINE_PASSWORD" --non-interactive --verbose
-          fi
-        shell: bash
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: artifacts/  # This tells the action to look in your dist folder
